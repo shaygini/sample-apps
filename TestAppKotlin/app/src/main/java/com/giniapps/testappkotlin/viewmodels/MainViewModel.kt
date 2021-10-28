@@ -19,7 +19,7 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             var index = 0
             while (true) {
-                produceEvent("new event" + index)
+                produceEvent("new event $index")
                 delay(200);
                 index += 1
             }

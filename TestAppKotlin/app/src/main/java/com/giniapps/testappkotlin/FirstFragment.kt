@@ -27,7 +27,7 @@ class FirstFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    val viewModel : MainViewModel by viewModels()
+    private val viewModel : MainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,7 +64,7 @@ class FirstFragment : Fragment() {
         }
 
 
-        // **** if we use this we can see the event keep collecting also when the fragment is stop
+        // **** if we use this we can see the event keep collecting also when the fragment is stopped (when go to the background)
 //        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
 //            viewModel.events.collect {
 //                Log.d(TAG, "onViewCreated: : $it")
@@ -74,9 +74,20 @@ class FirstFragment : Fragment() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart: ")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "onStop: ")
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        Log.d(TAG, "onDestroyView: ")
     }
 
 
